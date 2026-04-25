@@ -187,6 +187,17 @@ body {
       display: flex;
       gap: 20px;
     }
+    .video-section {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 20px;
+}
 
     .video-card {
       min-width: 180px;
@@ -196,6 +207,13 @@ body {
       position: relative;
       overflow: hidden;
     }
+    .video-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+    .video-section::-webkit-scrollbar {
+  display: none;
+}
 
     .video-card video {
       width: 100%;
