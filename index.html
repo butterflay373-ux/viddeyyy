@@ -20,6 +20,7 @@ hs.src = ('//s10.histats.com/js15_as.js');
 <!-- Histats.com  END  -->
 
   <style>
+    
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -34,6 +35,13 @@ hs.src = ('//s10.histats.com/js15_as.js');
       background: white;
       align-items: center;
     }
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
 
     header h2 {
       color: #ff4da6;
