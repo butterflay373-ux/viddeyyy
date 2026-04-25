@@ -73,7 +73,7 @@ header {
   color: #1e2a3e;
 }
 
-/* VIDEO SECTION (HORIZONTAL SCROLL - GESER NYAMAN) */
+/* VIDEO SECTION (HORIZONTAL SCROLL - GESER SAMPING NYAMAN) */
 .video-section {
   display:flex;
   gap:16px;
@@ -169,32 +169,68 @@ header {
   transform: scale(1.05);
 }
 
-/* STEPS */
-.steps {
+/* BAGIAN DOWNLOAD DENGAN PILIHAN RESOLUSI (MENGGANTI STEPS) */
+.download-res-section {
   text-align:center;
-  padding:40px 20px;
+  padding: 40px 20px;
   background: white;
+  border-radius: 28px;
+  margin: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
-.step-container {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:24px;
+.download-res-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
   margin-top: 20px;
 }
 
-.step {
-  width:220px;
-  background:#f8f9ff;
-  padding:20px;
-  border-radius:28px;
-  font-weight: 600;
-  color: #0066ff;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.03);
+.res-select-wrap {
+  background: #f0f2f5;
+  border-radius: 60px;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* CONTOH VIDEO (HORIZONTAL SCROLL) */
+.res-select {
+  padding: 12px 20px;
+  border-radius: 40px;
+  border: none;
+  background: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: inherit;
+}
+
+.download-main-btn {
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(0,102,255,0.3);
+}
+
+.download-main-btn:hover {
+  background: #0052cc;
+  transform: scale(1.02);
+}
+
+/* CONTOH VIDEO - SCROLL KE BAWAH (VERTIKAL) */
 .contoh {
   padding:40px 20px;
   text-align:center;
@@ -202,48 +238,64 @@ header {
 }
 
 .contoh-container {
-  display:flex;
-  gap:18px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 10px 4px 20px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-height: 550px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 16px 20px 16px;
   scrollbar-width: thin;
+  margin-top: 20px;
 }
 
 .contoh-container::-webkit-scrollbar {
-  height: 4px;
+  width: 5px;
+}
+.contoh-container::-webkit-scrollbar-track {
+  background: #e9ecef;
+  border-radius: 10px;
+}
+.contoh-container::-webkit-scrollbar-thumb {
+  background: #bfc6d0;
+  border-radius: 10px;
 }
 
 .card {
-  min-width: 180px;
-  width: 180px;
+  width: 100%;
+  max-width: 320px;
   background: #fef9ff;
-  border-radius: 24px;
-  padding: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: 0 12px 22px rgba(0,0,0,0.08);
+  transition: all 0.2s;
   flex-shrink: 0;
 }
 
 .thumb {
-  height: 200px;
+  height: 220px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 20px;
   position: relative;
   background: #1a1a2e;
   cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
 }
 
 .thumb video {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   pointer-events: none;
 }
 
 .card h4 {
-  margin-top: 12px;
-  margin-bottom: 6px;
-  font-size: 16px;
+  margin-top: 14px;
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e2a3e;
 }
 
 /* CTA */
@@ -267,13 +319,18 @@ header {
     width: 140px;
     height: 250px;
   }
-  .step {
-    width: 85%;
-  }
-  .download-icon {
-    width: 30px;
-    height: 30px;
+  .download-main-btn {
     font-size: 16px;
+    padding: 10px 20px;
+  }
+  .res-select {
+    padding: 8px 16px;
+  }
+  .card {
+    max-width: 280px;
+  }
+  .thumb {
+    height: 190px;
   }
 }
 </style>
@@ -297,64 +354,89 @@ header {
 <!-- VIDEO UTAMA (HORIZONTAL SCROLL) -->
 <section class="video-section">
   <div class="video-card" data-video-id="vid1">
-    <video id="vid1" src="vidio 1.mp4" preload="metadata"></video>
+    <video id="vid1" src="vidio 1.mp4" preload="metadata" playsinline></video>
     <div class="play-btn">▶</div>
     <div class="download-icon" data-video-src="vidio 1.mp4" data-video-name="video_kenangan_1.mp4">⬇️</div>
   </div>
   <div class="video-card" data-video-id="vid2">
-    <video id="vid2" src="vidio2.mp4" preload="metadata"></video>
+    <video id="vid2" src="vidio2.mp4" preload="metadata" playsinline></video>
     <div class="play-btn">▶</div>
     <div class="download-icon" data-video-src="vidio2.mp4" data-video-name="momen_seru_2.mp4">⬇️</div>
   </div>
   <div class="video-card" data-video-id="vid3">
-    <video id="vid3" src="vidio3.mp4" preload="metadata"></video>
+    <video id="vid3" src="vidio3.mp4" preload="metadata" playsinline></video>
     <div class="play-btn">▶</div>
     <div class="download-icon" data-video-src="vidio3.mp4" data-video-name="ucapan_spesial_3.mp4">⬇️</div>
   </div>
   <div class="video-card" data-video-id="vid4">
-    <video id="vid4" src="vidio4.mp4" preload="metadata"></video>
+    <video id="vid4" src="vidio4.mp4" preload="metadata" playsinline></video>
     <div class="play-btn">▶</div>
     <div class="download-icon" data-video-src="vidio4.mp4" data-video-name="jepang_mantap_4.mp4">⬇️</div>
   </div>
 </section>
 
-<!-- STEPS -->
-<section class="steps">
-<h2>Cara Kerja</h2>
-<div class="step-container">
-<div class="step">📲 Undang Teman</div>
-<div class="step">🎥 Kumpulkan Video</div>
-<div class="step">🎁 Bagikan Hadiah</div>
-</div>
+<!-- BAGIAN DOWNLOAD VIDEO DENGAN PILIHAN RESOLUSI (MENGGANTI STEPS) -->
+<section class="download-res-section">
+  <h2>⬇️ Download Video Pilihan Resolusi</h2>
+  <p style="color: #5a6874;">Pilih kualitas video yang ingin kamu unduh</p>
+  <div class="download-res-container">
+    <div class="res-select-wrap">
+      <span style="font-size: 14px;">🎬</span>
+      <select id="qualitySelect" class="res-select">
+        <option value="360">360p (Rendah - Hemat Kuota)</option>
+        <option value="720" selected>720p (SD - Standar)</option>
+        <option value="1080">1080p (HD - Terbaik)</option>
+      </select>
+    </div>
+    <button id="downloadQualityBtn" class="download-main-btn">📥 Download Video</button>
+  </div>
+  <p style="font-size: 12px; margin-top: 16px; opacity:0.7;">*Video akan diunduh sesuai resolusi yang dipilih (simulasi kualitas terbaik)</p>
 </section>
 
-<!-- CONTOH VIDEO LAINNYA (HORIZONTAL SCROLL) -->
+<!-- CONTOH VIDEO VERTICAL SCROLL (KE BAWAH) -->
 <section class="contoh">
 <h2>✨ Contoh Video Spesial ✨</h2>
+<p class="sub" style="margin-bottom: 8px; color: #5a6874;">Gulir ke bawah untuk lihat semua koleksi</p>
 <div class="contoh-container">
   <div class="card">
     <div class="thumb" data-video-elem="thumbVideo1">
-      <video src="vidio 1.mp4" preload="metadata"></video>
+      <video src="vidio 1.mp4" preload="metadata" playsinline></video>
       <div class="play-btn">▶</div>
       <div class="download-icon" data-video-src="vidio 1.mp4" data-video-name="ulang_tahun_istimewa.mp4">⬇️</div>
     </div>
-    <h4>🎂 Ulang Tahun</h4>
+    <h4>🎂 Ulang Tahun Spesial</h4>
   </div>
   <div class="card">
     <div class="thumb" data-video-elem="thumbVideo2">
-      <video src="vidio2.mp4" preload="metadata"></video>
+      <video src="vidio2.mp4" preload="metadata" playsinline></video>
       <div class="play-btn">▶</div>
       <div class="download-icon" data-video-src="vidio2.mp4" data-video-name="kenangan_manis.mp4">⬇️</div>
     </div>
-    <h4>💖 Kenangan</h4>
+    <h4>💖 Kenangan Terindah</h4>
   </div>
   <div class="card">
     <div class="thumb" data-video-elem="thumbVideo3">
-      <video src="vidio4.mp4" preload="metadata"></video>
+      <video src="vidio4.mp4" preload="metadata" playsinline></video>
       <div class="play-btn">▶</div>
       <div class="download-icon" data-video-src="vidio4.mp4" data-video-name="jepang_trip.mp4">⬇️</div>
     </div>
-    <h4>🇯🇵 Jepang Mantap</h4>
+    <h4>🇯🇵 Liburan Jepang</h4>
+  </div>
+  <div class="card">
+    <div class="thumb" data-video-elem="thumbVideo4">
+      <video src="vidio3.mp4" preload="metadata" playsinline></video>
+      <div class="play-btn">▶</div>
+      <div class="download-icon" data-video-src="vidio3.mp4" data-video-name="persahabatan.mp4">⬇️</div>
+    </div>
+    <h4>🤝 Momen Persahabatan</h4>
+  </div>
+  <div class="card">
+    <div class="thumb" data-video-elem="thumbVideo5">
+      <video src="vidio 1.mp4" preload="metadata" playsinline></video>
+      <div class="play-btn">▶</div>
+      <div class="download-icon" data-video-src="vidio 1.mp4" data-video-name="kejutan_lucu.mp4">⬇️</div>
+    </div>
+    <h4>🎉 Kejutan Lucu</h4>
   </div>
 </div>
 </section>
@@ -370,8 +452,7 @@ header {
     // --- FUNGSI DOWNLOAD VIDEO (BLOB / FORCE DOWNLOAD) ---
     async function downloadVideoFromUrl(url, filename) {
       try {
-        // Tampilkan indikasi kecil (opsional)
-        const response = await fetch(url, { mode: 'cors' }); // menggunakan cors kalau beda origin
+        const response = await fetch(url, { mode: 'cors' });
         if (!response.ok) throw new Error('Gagal mengunduh');
         const blob = await response.blob();
         const blobUrl = URL.createObjectURL(blob);
@@ -383,8 +464,7 @@ header {
         document.body.removeChild(a);
         URL.revokeObjectURL(blobUrl);
       } catch (err) {
-        console.warn('Download gagal melalui blob, mencoba link langsung', err);
-        // fallback: menggunakan anchor download (work jika same-origin)
+        console.warn('Download fallback', err);
         const fallbackLink = document.createElement('a');
         fallbackLink.href = url;
         fallbackLink.download = filename;
@@ -395,18 +475,46 @@ header {
       }
     }
 
-    // --- TOGGLE PLAY/PAUSE VIDEO UTAMA (CARD DI VIDEO-SECTION) ---
-    function toggleMainVideo(videoElement, playBtnElement) {
+    // Fungsi untuk download dengan pilihan resolusi
+    // Karena kita hanya memiliki satu sumber video (misal vidio 1.mp4), 
+    // kita akan tetap menggunakan file yang sama namun menambahkan label resolusi pada nama file.
+    // Untuk simulasi lebih baik, kita bisa memetakan resolusi ke file berbeda jika ada,
+    // tapi dalam kasus ini kita unduh file original dengan penamaan sesuai kualitas.
+    function downloadWithQuality(quality) {
+      // Pilih video sumber (bisa menggunakan video utama pertama sebagai contoh)
+      // Atau bisa juga memilih video default yaitu "vidio 1.mp4"
+      let baseVideoUrl = "vidio 1.mp4"; // default
+      // Cek apakah ada video yang sedang diputar atau video pertama di galeri
+      const anyVideo = document.querySelector('.video-card video');
+      if (anyVideo && anyVideo.src) {
+        baseVideoUrl = anyVideo.src;
+      }
+      // Buat nama file berdasarkan resolusi
+      let resolutionLabel = "";
+      if (quality === "360") resolutionLabel = "360p";
+      else if (quality === "720") resolutionLabel = "720p";
+      else if (quality === "1080") resolutionLabel = "1080p";
+      const fileName = `video_${resolutionLabel}_${Date.now()}.mp4`;
+      
+      // Tampilkan notifikasi ringan (opsional)
+      const btn = document.getElementById('downloadQualityBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '⏳ Mengunduh...';
+      setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+      
+      downloadVideoFromUrl(baseVideoUrl, fileName);
+    }
+
+    // --- TOGGLE PLAY/PAUSE VIDEO (UMUM) ---
+    function toggleVideoPlay(videoElement, playBtnElement) {
       if (!videoElement) return;
-      // pause semua video lain di document (agar hanya satu yang putar)
       document.querySelectorAll('video').forEach(v => {
         if (v !== videoElement && !v.paused) {
           v.pause();
-          // cari tombol play milik video lain lalu tampilkan
-          const otherCard = v.closest('.video-card, .thumb');
-          if (otherCard) {
-            const otherPlayBtn = otherCard.querySelector('.play-btn');
-            if (otherPlayBtn) otherPlayBtn.style.display = 'flex';
+          const otherParent = v.closest('.video-card, .thumb');
+          if (otherParent) {
+            const otherBtn = otherParent.querySelector('.play-btn');
+            if (otherBtn) otherBtn.style.display = 'flex';
           }
         }
       });
@@ -420,7 +528,7 @@ header {
       }
     }
 
-    // --- EVENT UNTUK VIDEO CARD (karena pointer-events:none pada video, klik di card memicu toggle) ---
+    // --- SETUP UNTUK VIDEO CARD UTAMA (HORIZONTAL) ---
     function setupMainVideoCards() {
       const videoCards = document.querySelectorAll('.video-card');
       videoCards.forEach(card => {
@@ -428,56 +536,38 @@ header {
         const playBtn = card.querySelector('.play-btn');
         if (!video || !playBtn) return;
         
-        // Sembunyikan playBtn saat video play, tampilkan saat pause/end
-        video.addEventListener('play', () => {
-          playBtn.style.display = 'none';
-        });
-        video.addEventListener('pause', () => {
-          playBtn.style.display = 'flex';
-        });
-        video.addEventListener('ended', () => {
-          playBtn.style.display = 'flex';
-        });
+        video.addEventListener('play', () => { playBtn.style.display = 'none'; });
+        video.addEventListener('pause', () => { playBtn.style.display = 'flex'; });
+        video.addEventListener('ended', () => { playBtn.style.display = 'flex'; });
         
-        // Ketika card diklik (area mana saja selain tombol download) -> play/pause
         card.addEventListener('click', (e) => {
-          // Jangan trigger jika yang diklik adalah tombol download
           if (e.target.classList && e.target.classList.contains('download-icon')) return;
-          toggleMainVideo(video, playBtn);
+          toggleVideoPlay(video, playBtn);
         });
         
-        // tombol play manual juga bisa (tidak bentrok)
         if (playBtn) {
           playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleMainVideo(video, playBtn);
+            toggleVideoPlay(video, playBtn);
           });
         }
       });
     }
     
-    // --- SETUP UNTUK CONTOH (THUMB) ---
-    function setupExampleThumbs() {
+    // --- SETUP UNTUK CONTOH (VERTIKAL SCROLL) ---
+    function setupVerticalExample() {
       const thumbContainers = document.querySelectorAll('.thumb');
       thumbContainers.forEach(thumb => {
         const video = thumb.querySelector('video');
         const playBtn = thumb.querySelector('.play-btn');
         if (!video || !playBtn) return;
         
-        video.addEventListener('play', () => {
-          playBtn.style.display = 'none';
-        });
-        video.addEventListener('pause', () => {
-          playBtn.style.display = 'flex';
-        });
-        video.addEventListener('ended', () => {
-          playBtn.style.display = 'flex';
-        });
+        video.addEventListener('play', () => { playBtn.style.display = 'none'; });
+        video.addEventListener('pause', () => { playBtn.style.display = 'flex'; });
+        video.addEventListener('ended', () => { playBtn.style.display = 'flex'; });
         
-        // Klik di area thumb (selain download) -> play/pause
         thumb.addEventListener('click', (e) => {
           if (e.target.classList && e.target.classList.contains('download-icon')) return;
-          // pause video lain
           document.querySelectorAll('video').forEach(v => {
             if (v !== video && !v.paused) {
               v.pause();
@@ -497,7 +587,6 @@ header {
           }
         });
         
-        // Tombol play didalam thumb
         if (playBtn) {
           playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -523,25 +612,19 @@ header {
       });
     }
     
-    // --- SETUP TOMBOL DOWNLOAD UNTUK SEMUA ---
+    // --- SETUP TOMBOL DOWNLOAD KHUSUS UNTUK IKON DI VIDEO ---
     function setupDownloadButtons() {
       const downloadBtns = document.querySelectorAll('.download-icon');
       downloadBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
-          e.stopPropagation(); // mencegah video play/pause
-          const videoSrc = btn.getAttribute('data-video-src');
+          e.stopPropagation();
+          let videoSrc = btn.getAttribute('data-video-src');
           let fileName = btn.getAttribute('data-video-name');
-          if (!fileName) {
-            // generate nama dari src
-            let rawName = videoSrc.split('/').pop();
-            fileName = rawName || 'video_download.mp4';
-          }
+          if (!fileName) fileName = 'video_download.mp4';
           if (videoSrc) {
-            // Pastikan ekstensi .mp4
             if (!fileName.endsWith('.mp4')) fileName += '.mp4';
             await downloadVideoFromUrl(videoSrc, fileName);
           } else {
-            // fallback: cari video terdekat
             const parentCard = btn.closest('.video-card, .thumb');
             if (parentCard) {
               const videoElem = parentCard.querySelector('video');
@@ -550,56 +633,45 @@ header {
                 let name = srcUrl.split('/').pop().split('?')[0];
                 if (!name.endsWith('.mp4')) name += '.mp4';
                 await downloadVideoFromUrl(srcUrl, name);
-              } else {
-                alert('Video tidak tersedia untuk diunduh');
-              }
+              } else alert('Video tidak tersedia');
             }
           }
         });
       });
     }
+
+    // Event untuk tombol download dengan resolusi
+    const qualityBtn = document.getElementById('downloadQualityBtn');
+    if (qualityBtn) {
+      qualityBtn.addEventListener('click', () => {
+        const selectElem = document.getElementById('qualitySelect');
+        const selectedQuality = selectElem ? selectElem.value : '720';
+        downloadWithQuality(selectedQuality);
+      });
+    }
     
-    // --- PERBAIKAN: AGAR GESER TETAP LANCAR DAN VIDEO TIDAK GANGGU SCROLL ---
-    // (sudah di setting pointer-events: none pada video, jadi geser di video tetap bisa scroll horizontal)
-    // Tambahan: mencegah default drag pada gambar / video
+    // Mencegah drag di video
     window.addEventListener('dragstart', (e) => {
-      if (e.target.tagName === 'VIDEO' || e.target.closest('.video-card')) {
+      if (e.target.tagName === 'VIDEO' || e.target.closest('.video-card, .thumb')) {
         e.preventDefault();
       }
     });
     
-    // Inisialisasi semua fitur setelah DOM siap
     document.addEventListener('DOMContentLoaded', () => {
       setupMainVideoCards();
-      setupExampleThumbs();
+      setupVerticalExample();
       setupDownloadButtons();
       
-      // Opsional: menandai video yang tidak memiliki atribut preload agar lebih halus
-      // Pastikan semua video bisa di putar tanpa blocking scrolling
       const allVideos = document.querySelectorAll('video');
       allVideos.forEach(vid => {
         vid.setAttribute('playsinline', 'true');
         vid.setAttribute('preload', 'metadata');
-        // mencegah konflik dengan gesture bawaan browser
-        vid.addEventListener('touchstart', (e) => {
-          // tidak mengganggu scroll karena pointer-events: none, tapi tetap amankan
-          if (e.target !== vid) return;
-          e.preventDefault();
-        });
       });
       
-      // Fix: pada saat video berakhir di main card, playBtn muncul lagi sudah via event ended
-      // Untuk kasus video mungkin tidak trigger ended karena loop=false, tetap aman.
-      // agar scroll semakin mulus, tambahkan smooth CSS
+      console.log('✨ Fitur download dengan pilihan resolusi siap | Scroll vertikal untuk contoh video ✨');
     });
-    
-    // Handling jika video belum ada sumber sama sekali (fallback peringatan di console)
-    console.log('✨ Mode sentuh & download aktif | Geser horizontal untuk lihat video lain ✨');
   })();
 </script>
 
-<!-- PENTING: TAMBAHKAN BEHAVIOR AGAR VIDEO DI THUMB JUGA MENDAPATKAN ENDED EVENT (SUDAH) -->
-<!-- FITUR "KETIKA DI GESER BISA" SUDAH DENGAN overflow-x:auto DAN -webkit-overflow-scrolling -->
-<!-- IKON DOWNLOAD SUDAH DITAMBAHKAN UNTUK SEMUA VIDEO -->
 </body>
 </html>
