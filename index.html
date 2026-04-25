@@ -447,33 +447,33 @@ header {
 <button class="btn btn-primary">Buat Video Grup</button>
 </section>
 
-<!-- <script>
+<script>
   (function() {
     // --- FUNGSI DOWNLOAD VIDEO (BLOB / FORCE DOWNLOAD) ---
-    async function downloadVideoFromUrl(url, filename) {
-      try {
-        const response = await fetch(url, { mode: 'cors' });
-        if (!response.ok) throw new Error('Gagal mengunduh');
-        const blob = await response.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(blobUrl);
-      } catch (err) {
-        console.warn('Download fallback', err);
-        const fallbackLink = document.createElement('a');
-        fallbackLink.href = url;
-        fallbackLink.download = filename;
-        fallbackLink.target = '_blank';
-        document.body.appendChild(fallbackLink);
-        fallbackLink.click();
-        document.body.removeChild(fallbackLink);
-      }
-    } -->
+    // async function downloadVideoFromUrl(url, filename) {
+    //   try {
+    //     const response = await fetch(url, { mode: 'cors' });
+    //     if (!response.ok) throw new Error('Gagal mengunduh');
+    //     const blob = await response.blob();
+    //     const blobUrl = URL.createObjectURL(blob);
+    //     const a = document.createElement('a');
+    //     a.href = blobUrl;
+    //     a.download = filename;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    //     URL.revokeObjectURL(blobUrl);
+    //   } catch (err) {
+    //     console.warn('Download fallback', err);
+    //     const fallbackLink = document.createElement('a');
+    //     fallbackLink.href = url;
+    //     fallbackLink.download = filename;
+    //     fallbackLink.target = '_blank';
+    //     document.body.appendChild(fallbackLink);
+    //     fallbackLink.click();
+    //     document.body.removeChild(fallbackLink);
+    //   }
+    }
 
     // Fungsi untuk download dengan pilihan resolusi
     // Karena kita hanya memiliki satu sumber video (misal vidio 1.mp4), 
